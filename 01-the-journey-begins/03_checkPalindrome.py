@@ -26,3 +26,4 @@ if __name__ == '__main__':
     inputString = "a"
     r = solution(inputString)
     print(r)
+
