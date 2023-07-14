@@ -18,30 +18,79 @@ You can remove 3 from the array to get the strictly increasing sequence [1, 2]. 
 
 
 def solution(l):
-    err = 0
-    for i in range(len(l) - 1):
-        copy = l.copy()
-        copy.pop(i)
-        unique = sorted(list(set(copy)))
-        if unique != copy:
-            err += 1
-            if err > 1:
-                return False
-    return True
-        
-                
+    print()
+    vals = []
+    ls = list(set(l))
+    s = sorted(ls)
+    sstr = str(s)
+    print(l, s)
+    def val(i):
+        tl = l[:i] + l[i+1:]
+        return sorted(set(tl)) == tl
+    return any(( val(i) for i in range(len(l)))) if len(l) - len(ls) <= 1 else False
 
 
-if __name__ == '__main__':
+def main():
     data = [1, 3, 2, 1]
-    print(solution(data))
+    r = solution(data)
+    sol = False
+    print(f"{sol} -> {r} \t {sol == r}")
 
     data = [1, 3, 2]
-    print(solution(data))
+    r = solution(data)
+    sol = True
+    print(f"{sol} -> {r} \t {sol == r}")
+    
+    data = [3, 6, 5, 8, 10, 20, 15]
+    r = solution(data)
+    sol = False
+    print(f"{sol} -> {r} \t {sol == r}")
     
     data = [1, 2, 1, 2]
-    print(solution(data))
+    r = solution(data)
+    sol = False
+    print(f"{sol} -> {r} \t {sol == r}")
     
     data = [10, 1, 2, 3, 4, 5]
-    print(solution(data))
+    r = solution(data)
+    sol = True
+    print(f"{sol} -> {r} \t {sol == r}")
+
+    data = [0, -2, 5, 6]
+    r = solution(data)
+    sol = True
+    print(f"{sol} -> {r} \t {sol == r}")
+
+    data = [40, 50, 60, 10, 20, 30]
+    r = solution(data)
+    sol = False
+    print(f"{sol} -> {r} \t {sol == r}")
     
+    data = [1, 1]
+    r = solution(data)
+    sol = True
+    print(f"{sol} -> {r} \t {sol == r}")
+
+    data = [1, 2, 3, 4, 3, 6]
+    r = solution(data)
+    sol = True
+    print(f"{sol} -> {r} \t {sol == r}")
+    
+    data = [10, 1, 2, 3, 4, 5, 6, 1]
+    r = solution(data)
+    sol = False
+    print(f"{sol} -> {r} \t {sol == r}")
+    
+
+def test():
+    a = [1,2,3,4,5]
+    la = len(a)
+    for i in range(la):
+        iz = (i-1) % la
+        cn = i % la
+        de = (i+1) % la
+        print(a[iz], a[cn], a[de])
+
+if __name__ == '__main__':
+    main()
+    # test()
