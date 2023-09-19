@@ -5,6 +5,8 @@ Given matrix, a rectangular matrix of integers, where each value represents the 
 """
 
 def solution(m):
+    print()
+    print(m)
     tot = 0
     cer = []
     for i in range(len(m)):
