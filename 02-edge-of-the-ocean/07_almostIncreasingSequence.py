@@ -19,16 +19,32 @@ You can remove 3 from the array to get the strictly increasing sequence [1, 2]. 
 
 def solution(l):
     print()
-    vals = []
-    ls = list(set(l))
-    s = sorted(ls)
-    sstr = str(s)
-    print(l, s)
-    def val(i):
-        tl = l[:i] + l[i+1:]
-        return sorted(set(tl)) == tl
-    return any(( val(i) for i in range(len(l)))) if len(l) - len(ls) <= 1 else False
+    print(l)
+    if len(l) < 3:
+        return True
+    errores = 0
+    errores_rep = 0
+    # if l[0] >= l[-1]:
+    #     errores += 1
+    # errors = []
+    for i in range(len(l) - 1):
+        if l[i] >= l[i+1]:
+            errores += 1
+        if i > 0:
+            if l[i-1] >= l[i+1]:
+                errores_rep += 1
+        if errores > 1 or errores_rep > 1:
+            return False
+    return True
 
+def solution_ant(l):
+    if len(l) - len(set(l)) > 1:
+        return False
+    def val(i):
+        tm = l[:i] + l[i+1:]
+        return sorted(set(tm)) == tm
+    return any(( val(i) for i in range(len(l))))
+    
 
 def main():
     data = [1, 3, 2, 1]
@@ -77,6 +93,16 @@ def main():
     print(f"{sol} -> {r} \t {sol == r}")
     
     data = [10, 1, 2, 3, 4, 5, 6, 1]
+    r = solution(data)
+    sol = False
+    print(f"{sol} -> {r} \t {sol == r}")
+
+    data = [1, 1, 1, 2, 3]
+    r = solution(data)
+    sol = False
+    print(f"{sol} -> {r} \t {sol == r}")
+
+    data = [1, 1, 1, 2, 3]
     r = solution(data)
     sol = False
     print(f"{sol} -> {r} \t {sol == r}")
