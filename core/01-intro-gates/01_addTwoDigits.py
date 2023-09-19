@@ -7,10 +7,10 @@ For n = 29, the output should be
 solution(n) = 11
 """
 
-def solution(n):
+def solution(d):
     print()
-    print(n)
-    return sum(int(d) for d in str(n))
+    print(d)
+    return sum(int(n) for n in str(d))
 
 
 def main():
