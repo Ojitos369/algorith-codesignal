@@ -24,14 +24,10 @@ def solution(l):
         return True
     errores = 0
     errores_rep = 0
-    # if l[0] >= l[-1]:
-    #     errores += 1
-    # errors = []
     for i in range(len(l) - 1):
         if l[i] >= l[i+1]:
             errores += 1
-        if i > 0:
-            if l[i-1] >= l[i+1]:
+        if i > 0 and l[i-1] >= l[i+1]:
                 errores_rep += 1
         if errores > 1 or errores_rep > 1:
             return False
