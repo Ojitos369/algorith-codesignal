@@ -1,33 +1,44 @@
-
-
-"""
-Given two strings, find the number of common characters between them.
+/*
+Given an array of strings, return another array containing all of its longest strings.
 
 Example
 
-For s1 = "aabcc" and s2 = "adcaa", the output should be
-solution(s1, s2) = 3.
+For inputArray = ["aba", "aa", "ad", "vcd", "aba"], the output should be
+solution(inputArray) = ["aba", "vcd", "aba"].
 
-Strings have 3 common characters - 2 "a"s and 1 "c".
-"""
+*/
 
-def solution(s1, s2): # d of data
-    print()
-    print(s1, s2)
-    return sum([int(s1[i] == s2[i]) for i in range(len(s1))])
+fn solution(s1: String, s2: String) -> i32 {
+    let mut total = 0;
+    let a1: Vec<char> = s1.chars().collect();
+    let a2: Vec<char> = s2.chars().collect();
+    let mut checked: Vec<char> = vec![];
+    for i in 0..a1.len() {
+        let char_i = a1[i];
+        if checked.contains(&char_i) {
+            continue;
+        }
+        let count_1 = a1.iter().filter(|&x| *x == char_i).count();
+        let count_2 = a2.iter().filter(|&x| *x == char_i).count();
+        total += std::cmp::min(count_1, count_2) as i32;
+        checked.push(char_i);
+    }
+    total
+}
 
+fn main() {
+    let tests = [
+        ["aabcc", "adcaa"],
+        ["zzzz", "zzzzzzz"],
+        ["abca", "xyzbac"],
+    ];
+    let sols = [
+        3, 4, 3
+    ];
 
-def main():
-    data = ["aabcc", "adcaa"]
-    r = solution(*data)
-    sol = 3
-    print(f"{sol} -> {r} \t {sol == r}")
-
-
-def test():
-    pass
-
-
-if __name__ == '__main__':
-    main()
-    # test()
+    for i in 0..tests.len() {
+        let d = tests[i];
+        let r = solution(d[0].to_string(), d[1].to_string());
+        println!("{:?} -> {:?} \t {:?}", sols[i], r, sols[i] == r);
+    }
+}
