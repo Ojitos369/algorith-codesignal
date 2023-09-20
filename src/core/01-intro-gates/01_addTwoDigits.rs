@@ -1,29 +1,25 @@
-"""
+/*
 You are given a two-digit integer n. Return the sum of its digits.
 
 Example
 
 For n = 29, the output should be
 solution(n) = 11
-"""
+*/
 
-def solution(d):
-    print()
-    print(d)
-    return sum(int(n) for n in str(d))
-
-
-def main():
-    data = 29
-    r = solution(data)
-    sol = 11
-    print(f"{sol} -> {r} \t {sol == r}")
+fn solution(n: i32) -> i32 {
+    let mut sum = 0;
+    let str_n = n.to_string();
+    for c in str_n.chars() {
+        sum += c.to_digit(10).unwrap();
+    }
+    sum as i32
+}
 
 
-def test():
-    pass
-
-
-if __name__ == '__main__':
-    main()
-    # test()
+fn main() {
+    let data = 29;
+    let r = solution(data);
+    let sol = 11;
+    println!("{} -> {} \t {}", sol, r, sol == r);
+}

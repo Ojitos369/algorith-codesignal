@@ -1,20 +1,25 @@
 /*
-Write a function that returns the sum of two numbers.
+You are given a two-digit integer n. Return the sum of its digits.
 
 Example
 
-For param1 = 1 and param2 = 2, the output should be
-solution(param1, param2) = 3.
+For n = 29, the output should be
+solution(n) = 11
 */
 
-fn solution(param1: i32, param2: i32) -> i32 {
-    param1 + param2
+fn solution(n: i32) -> i32 {
+    let mut sum = 0;
+    let str_n = n.to_string();
+    for c in str_n.chars() {
+        sum += c.to_digit(10).unwrap();
+    }
+    sum as i32
 }
 
 
 fn main() {
-    let data = [1, 2];
-    let r = solution(data[0], data[1]);
-    let sol = 3;
+    let data = 29;
+    let r = solution(data);
+    let sol = 11;
     println!("{} -> {} \t {}", sol, r, sol == r);
 }
