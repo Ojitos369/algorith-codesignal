@@ -16,13 +16,15 @@ fn solution(year: i32) -> i32 {
 
 
 fn main() {
-    let mut data = 1905;
-    let mut r = solution(data);
-    let mut sol = 20;
-    println!("{} -> {} \t {}", sol, r, sol == r);
+    let tests = [
+        1905,
+        1700
+    ];
+    let sols = [20, 17];
 
-    data = 1700;
-    r = solution(data);
-    sol = 17;
-    println!("{} -> {} \t {}", sol, r, sol == r);
+    for i in 0..tests.len() {
+        let d = tests[i].clone();
+        let r = solution(d);
+        println!("{} -> {} \t {}", sols[i], r, sols[i] == r);
+    }
 }

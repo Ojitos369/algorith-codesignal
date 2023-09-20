@@ -1,4 +1,4 @@
-"""
+/*
 Given the string, check if it is a palindrome.
 
 Example
@@ -9,21 +9,28 @@ For inputString = "abac", the output should be
 solution(inputString) = false;
 For inputString = "a", the output should be
 solution(inputString) = true.
+*/
 
-"""
-def solution(inputString):
-    return inputString == inputString[::-1]
+fn solution(d: String) -> bool {
+    // .chars() returns an iterator over the characters of a string slice
+    // .rev() reverses the iterator
+    // .collect::<String>() collects the iterator into a String
+    d == d.chars().rev().collect::<String>()
+}
 
 
 
-if __name__ == '__main__':
-    inputString = "aabaa"
-    r = solution(inputString)
-    print(r)
-    inputString = "abac"
-    r = solution(inputString)
-    print(r)
-    inputString = "a"
-    r = solution(inputString)
-    print(r)
+fn main() {
+    let tests = [
+        String::from("aabaa"),
+        String::from("abac"),
+        String::from("a")
+    ];
+    let sols = [true, false, true];
 
+    for i in 0..tests.len() {
+        let d = tests[i].clone();
+        let r = solution(d);
+        println!("{} -> {} \t {}", sols[i], r, sols[i] == r);
+    }
+}

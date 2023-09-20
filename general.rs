@@ -2,7 +2,7 @@
  Description of problem
 */
 
-fn solution(d: &str) -> String {
+fn solution(d: &str) -> String { // d of data
     println!();
     println!("{}", d);
     // ...
@@ -10,8 +10,12 @@ fn solution(d: &str) -> String {
 }
 
 fn main() {
-    let data = "input_data";
-    let r = solution(data);
-    let sol = "correct_answer";
-    println!("{} -> {} \t {}", sol, r, sol == r);
+    let tests = ["input_data"];
+    let sols = ["correct_answer"];
+
+    for i in 0..tests.len() {
+        let d = tests[i].clone();
+        let r = solution(d);
+        println!("{} -> {} \t {}", sols[i], r, sols[i] == r);
+    }
 }

@@ -1,28 +1,36 @@
 /*
-Given a year, return the century it is in. The first century spans from the year 1 up to and including the year 100, the second - from the year 101 up to and including the year 200, etc.
+Given the string, check if it is a palindrome.
 
 Example
 
-For year = 1905, the output should be
-solution(year) = 20;
-For year = 1700, the output should be
-solution(year) = 17.
+For inputString = "aabaa", the output should be
+solution(inputString) = true;
+For inputString = "abac", the output should be
+solution(inputString) = false;
+For inputString = "a", the output should be
+solution(inputString) = true.
 */
 
-fn solution(year: i32) -> i32 {
-    (year - 1) / 100 + 1
+fn solution(d: String) -> bool {
+    // .chars() returns an iterator over the characters of a string slice
+    // .rev() reverses the iterator
+    // .collect::<String>() collects the iterator into a String
+    d == d.chars().rev().collect::<String>()
 }
 
 
 
 fn main() {
-    let mut data = 1905;
-    let mut r = solution(data);
-    let mut sol = 20;
-    println!("{} -> {} \t {}", sol, r, sol == r);
+    let tests = [
+        String::from("aabaa"),
+        String::from("abac"),
+        String::from("a")
+    ];
+    let sols = [true, false, true];
 
-    data = 1700;
-    r = solution(data);
-    sol = 17;
-    println!("{} -> {} \t {}", sol, r, sol == r);
+    for i in 0..tests.len() {
+        let d = tests[i].clone();
+        let r = solution(d);
+        println!("{} -> {} \t {}", sols[i], r, sols[i] == r);
+    }
 }
