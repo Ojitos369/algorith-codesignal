@@ -16,6 +16,6 @@ fn main() {
     for i in 0..tests.len() {
         let d = tests[i].clone();
         let r = solution(d);
-        println!("{} -> {} \t {}", sols[i], r, sols[i] == r);
+        println!("{:?} -> {:?} \t {:?}", sols[i], r, sols[i] == r);
     }
 }

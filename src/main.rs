@@ -5,25 +5,23 @@ Example
 
 For inputArray = ["aba", "aa", "ad", "vcd", "aba"], the output should be
 solution(inputArray) = ["aba", "vcd", "aba"].
+
 */
 
 fn solution(d: Vec<String>) -> Vec<String> {
     println!();
     println!("{:?}", d);
 
-    let mut max_len = 0;
-    // .iter() -> creates an iterator over a slice
-    // .fold() -> applies a function to each element of an iterator, passing the result of each such invocation into the next
-    // acc -> accumulator
-    // s -> current value
-    max_len = d.iter().fold(max_len, |acc, s| if s.len() > acc { s.len() } else { acc });
-    // d.iter().fold(max_len, |acc, s| if s.len() > acc { s.len() } else { acc });
-    // rs = [s for s in d if len(s) == ml]
+    // .iter() -> iterator over references
+    // .map() -> transform each element
+    // .max() -> find the max element
+    // .unwrap() -> get the value out of the Option
+    let max_len = d.iter().map(|s| s.len()).max().unwrap();
 
-    let mut rs: Vec<String> = Vec::new();
-    rs = d.iter().fold(rs, |acc, s| if s.len() == max_len { acc.push(s.to_string()); acc.to_vec() } else { acc });
-    rs
-
+    // .into_iter() -> iterator over values
+    // .filter() -> filter the values
+    // .collect() -> collect the values into a vector
+    d.into_iter().filter(|s| s.len() == max_len).collect()
 }
 
 fn main() {
@@ -36,8 +34,9 @@ fn main() {
     ];
 
     for i in 0..tests.len() {
-        let d = tests[i].to_vec();
+        let d = tests[i].iter().map(|s| s.to_string()).collect();
         let r = solution(d);
-        println!("{} -> {} \t {}", sols[i], r, sols[i] == r);
+        let sr: Vec<String> = sols[i].iter().map(|s| s.to_string()).collect();
+        println!("{:?} -> {:?} \t {:?}", sr, r, sr == r);
     }
 }

@@ -1,48 +1,62 @@
-"""
+/*
 Given an array of strings, return another array containing all of its longest strings.
 
 Example
 
 For inputArray = ["aba", "aa", "ad", "vcd", "aba"], the output should be
 solution(inputArray) = ["aba", "vcd", "aba"].
-"""
 
-def solution(d):
-    print()
-    print(d)
-    ml = max([len(s) for s in d])
-    rs = [s for s in d if len(s) == ml]
-    return rs
-    for r in d:
-        lr = len(r)
-        if lr > max:
-            max = lr
-            rs = []
-        if lr == max:
-            rs.append(r)
+*/
 
-    if len(d) < 2:
-        return d
-    elif len(d) == 2:
-        return [d[0]] if len(d[0]) > len(d[1]) else ([d[1]] if len(d[1]) > len(d[0]) else d)
-    else:
-        r = solution(d[1:])
-        return [d[0]] if len(d[0]) > len(r[0]) else ([*r] if len(r[0]) > len(d[0]) else [d[0], *r])
+fn solution(d: Vec<String>) -> Vec<String> {
+    println!();
+    println!("{:?}", d);
 
-    # return rs
+    // .iter() -> iterator over references
+    // .map() -> transform each element
+    // .max() -> find the max element
+    // .unwrap() -> get the value out of the Option
+    let max_len = d.iter().map(|s| s.len()).max().unwrap();
 
+    // .into_iter() -> iterator over values
+    // .filter() -> filter the values
+    // .collect() -> collect the values into a vector
+    d.into_iter().filter(|s| s.len() == max_len).collect()
+}
 
-def main():
-    data = ["aba", "aa", "ad", "vcd", "aba"]
-    r = solution(data)
-    sol = ["aba", "vcd", "aba"]
-    print(f"{sol} -> {r} \t {sol == r}")
+/*
+fn solution_old(d: Vec<String>) -> Vec<String> {
+    println!();
+    println!("{:?}", d);
 
+    let mut max_len = 0;
+    // .iter() -> creates an iterator over a slice
+    // .fold() -> applies a function to each element of an iterator, passing the result of each such invocation into the next
+    // acc -> accumulator
+    // s -> current value
+    max_len = d.iter().fold(max_len, |acc, s| if s.len() > acc { s.len() } else { acc });
+    // d.iter().fold(max_len, |acc, s| if s.len() > acc { s.len() } else { acc });
+    // rs = [s for s in d if len(s) == ml]
 
-def test():
-    pass
+    let rs: Vec<String> = d.iter().filter(|s| s.len() == max_len).map(|s| s.to_string()).collect();
+    rs.to_vec()
 
+}
+ */
 
-if __name__ == '__main__':
-    main()
-    # test()
+fn main() {
+    let tests = [
+        ["aba", "aa", "ad", "vcd", "aba"]
+    ];
+    
+    let sols = [
+        ["aba", "vcd", "aba"]
+    ];
+
+    for i in 0..tests.len() {
+        let d = tests[i].iter().map(|s| s.to_string()).collect();
+        let r = solution(d);
+        let sr: Vec<String> = sols[i].iter().map(|s| s.to_string()).collect();
+        println!("{:?} -> {:?} \t {:?}", sr, r, sr == r);
+    }
+}
