@@ -8,20 +8,8 @@ solution(inputArray) = ["aba", "vcd", "aba"].
 
 */
 
-fn solution(d: Vec<String>) -> Vec<String> {
-    println!();
-    println!("{:?}", d);
+fn solution(s1: String, s2: String) -> i32 {
 
-    // .iter() -> iterator over references
-    // .map() -> transform each element
-    // .max() -> find the max element
-    // .unwrap() -> get the value out of the Option
-    let max_len = d.iter().map(|s| s.len()).max().unwrap();
-
-    // .into_iter() -> iterator over values
-    // .filter() -> filter the values
-    // .collect() -> collect the values into a vector
-    d.into_iter().filter(|s| s.len() == max_len).collect()
 }
 
 fn main() {

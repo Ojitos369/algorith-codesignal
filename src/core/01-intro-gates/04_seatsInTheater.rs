@@ -1,25 +1,21 @@
-"""
-Description of problem
-"""
+/*
+ Description of problem
+*/
 
-def solution(d): # d of data
-    print()
-    print(d)
-    ...
-    return "correct_answer"
+fn solution(d: &str) -> String { // d of data
+    println!();
+    println!("{:?}", d);
+    // ...
+    return String::from("correct_answer");
+}
 
+fn main() {
+    let tests = ["input_data"];
+    let sols = ["correct_answer"];
 
-def main():
-    data = "input_data"
-    r = solution(data)
-    sol = "correct_answer"
-    print(f"{sol} -> {r} \t {sol == r}")
-
-
-def test():
-    pass
-
-
-if __name__ == '__main__':
-    main()
-    # test()
+    for i in 0..tests.len() {
+        let d = tests[i].clone();
+        let r = solution(d);
+        println!("{:?} -> {:?} \t {:?}", sols[i], r, sols[i] == r);
+    }
+}
