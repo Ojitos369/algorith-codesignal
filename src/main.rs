@@ -1,25 +1,28 @@
 /*
-You are given a two-digit integer n. Return the sum of its digits.
+Given a year, return the century it is in. The first century spans from the year 1 up to and including the year 100, the second - from the year 101 up to and including the year 200, etc.
 
 Example
 
-For n = 29, the output should be
-solution(n) = 11
+For year = 1905, the output should be
+solution(year) = 20;
+For year = 1700, the output should be
+solution(year) = 17.
 */
 
-fn solution(n: i32) -> i32 {
-    let mut sum = 0;
-    let str_n = n.to_string();
-    for c in str_n.chars() {
-        sum += c.to_digit(10).unwrap();
-    }
-    sum as i32
+fn solution(year: i32) -> i32 {
+    (year - 1) / 100 + 1
 }
 
 
+
 fn main() {
-    let data = 29;
-    let r = solution(data);
-    let sol = 11;
+    let mut data = 1905;
+    let mut r = solution(data);
+    let mut sol = 20;
+    println!("{} -> {} \t {}", sol, r, sol == r);
+
+    data = 1700;
+    r = solution(data);
+    sol = 17;
     println!("{} -> {} \t {}", sol, r, sol == r);
 }
