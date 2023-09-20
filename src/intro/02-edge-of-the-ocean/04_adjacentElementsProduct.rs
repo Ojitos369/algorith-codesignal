@@ -10,6 +10,9 @@ solution(inputArray) = 21.
 */
 
 fn solution(d: Vec<i32>) -> i32 {
+    println!();
+    println!("{:?}", d);
+
     if d.len() > 2 {
         return std::cmp::max(d[0]*d[1], solution(d[1..].to_vec()));
     } else {

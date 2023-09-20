@@ -4,7 +4,7 @@
 
 fn solution(d: &str) -> String { // d of data
     println!();
-    println!("{}", d);
+    println!("{:?}", d);
     // ...
     return String::from("correct_answer");
 }

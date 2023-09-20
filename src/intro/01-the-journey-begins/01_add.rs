@@ -8,6 +8,8 @@ solution(param1, param2) = 3.
 */
 
 fn solution(param1: i32, param2: i32) -> i32 {
+    println!();
+    println!("{:?}", [param1, param2]);
     param1 + param2
 }
 

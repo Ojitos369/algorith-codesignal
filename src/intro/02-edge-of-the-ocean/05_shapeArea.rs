@@ -14,6 +14,9 @@ solution(n) = 13.
 */
 
 fn solution(d: i32) -> i32 {
+    println!();
+    println!("{:?}", d);
+
     // ((n**2) + ((n-1)**2))
     d.pow(2) + (d-1).pow(2)
 }

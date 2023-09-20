@@ -1,43 +1,39 @@
 /*
-Ratiorg got statues of different sizes as a present from CodeMaster for his birthday, each statue having an non-negative integer size. Since he likes to make things perfect, he wants to arrange them from smallest to largest so that each statue will be bigger than the previous one exactly by 1. He may need some additional statues to be able to accomplish that. Help him figure out the minimum number of additional statues needed.
+After becoming famous, the CodeBots decided to move into a new building together. Each of the rooms has a different cost, and some of them are free, but there's a rumour that all the free rooms are haunted! Since the CodeBots are quite superstitious, they refuse to stay in any of the free rooms, or any of the rooms below any of the free rooms.
 
-Example
-
-For statues = [6, 2, 3, 8], the output should be
-solution(statues) = 3.
-
-Ratiorg needs statues of sizes 4, 5 and 7.
+Given matrix, a rectangular matrix of integers, where each value represents the cost of the room, your task is to return the total sum of all rooms that are suitable for the CodeBots (ie: add up all the values that don't appear below a 0).
 */
 
-fn solution(d: Vec<i32>) -> i32 {
-    let mut order_d = d.clone();
-    order_d.sort();
-    let mut needed = 0;
-    let len_d = d.len() - 1;
-    for i in 0..len_d {
-        let diff = order_d[i + 1] - order_d[i];
-        if diff > 1 {
-            needed += diff - 1;
+fn solution(d: Vec<Vec<i32>>) -> i32 {
+    println!();
+    println!("{:?}", d);
+    
+    let mut tot = 0;
+    let mut cer: Vec<i32> = vec![];
+    for i in 0..d.len() {
+        for j in 0..d[i].len() {
+            if d[i][j] == 0 {
+                cer.push(j as i32);
+            }
+            if !cer.contains(&(j as i32)) {
+                tot += d[i][j]
+            }
         }
     }
-
-    needed
+    return tot
 }
 
-
-
 fn main() {
-    // [6, 2, 3, 8]
-    // [0, 3]
-    let tests: Vec<Vec<i32>> = vec![
-        vec![6, 2, 3, 8],
-        vec![0, 3],
-        vec![1, 2, 3, 8, 9, 5, 4, 7, 4, 5, 6],
+    let tests = [
+        [[0, 1, 1, 2], 
+        [0, 5, 0, 0], 
+        [2, 0, 3, 3]]
     ];
-    let sols = [3, 2, 0];
+
+    let sols = [9];
 
     for i in 0..tests.len() {
-        let d = tests[i].clone().to_vec();
+        let d = tests[i].to_vec().iter().map(|x| x.to_vec()).collect();
         let r = solution(d);
         println!("{} -> {} \t {}", sols[i], r, sols[i] == r);
     }

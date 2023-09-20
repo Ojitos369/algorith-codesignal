@@ -9,19 +9,18 @@ solution(statues) = 3.
 Ratiorg needs statues of sizes 4, 5 and 7.
 */
 
-fn solution(d: Vec<i32>) -> i32 {
-    let mut order_d = d.clone();
-    order_d.sort();
-    let mut needed = 0;
-    let len_d = d.len() - 1;
-    for i in 0..len_d {
-        let diff = order_d[i + 1] - order_d[i];
-        if diff > 1 {
-            needed += diff - 1;
-        }
-    }
+fn solution(mut d: Vec<i32>) -> i32 {
+    println!();
+    println!("{:?}", d);
 
-    needed
+    // .sort() -> orders the vector in ascending order
+    d.sort();
+
+    // .windows(2) -> returns a sliding window iterator over the vector
+    // .map() -> returns an iterator that applies the given closure to each element
+    // .sum() -> returns the sum of all elements in the iterator
+    d.windows(2).map(|pair| pair[1] - pair[0] - 1).sum()
+
 }
 
 

@@ -12,6 +12,8 @@ solution(inputString) = true.
 */
 
 fn solution(d: String) -> bool {
+    println!();
+    println!("{:?}", d);
     // .chars() returns an iterator over the characters of a string slice
     // .rev() reverses the iterator
     // .collect::<String>() collects the iterator into a String

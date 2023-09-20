@@ -1,5 +1,5 @@
-"""
-Given a sequence of integers as an array, determine whether it is possible to obtain a strictly increasing sequence by removing no more than one element from the array.
+/*
+ Given a sequence of integers as an array, determine whether it is possible to obtain a strictly increasing sequence by removing no more than one element from the array.
 
 Note: sequence a0, a1, ..., an is considered to be a strictly increasing if a0 < a1 < ... < an. Sequence containing only one element is also considered to be strictly increasing.
 
@@ -14,105 +14,52 @@ For sequence = [1, 3, 2], the output should be
 solution(sequence) = true.
 
 You can remove 3 from the array to get the strictly increasing sequence [1, 2]. Alternately, you can remove 2 to get the strictly increasing sequence [1, 3].
-"""
+*/
 
+fn solution(d: Vec<i32>) -> bool {
+    println!();
+    println!("{:?}", d);
 
-def solution(l):
-    print()
-    print(l)
-    if len(l) < 3:
-        return True
-    errores = 0
-    errores_rep = 0
-    for i in range(len(l) - 1):
-        if l[i] >= l[i+1]:
-            errores += 1
-        if i > 0 and l[i-1] >= l[i+1]:
-                errores_rep += 1
-        if errores > 1 or errores_rep > 1:
-            return False
-    return True
+    if d.len() < 3 {
+        return true;
+    }
+    let mut errores = 0;
+    let mut errores_rep = 0;
+    for i in 0..d.len() - 1 {
+        if d[i] >= d[i+1] {
+            errores += 1;
+        }
+        if i > 0 && d[i-1] >= d[i+1] {
+            errores_rep += 1;
+        }
+        if errores > 1 || errores_rep > 1 {
+            return false;
+        }
+    }
+    return true;
+}
 
-def solution_ant(l):
-    if len(l) - len(set(l)) > 1:
-        return False
-    def val(i):
-        tm = l[:i] + l[i+1:]
-        return sorted(set(tm)) == tm
-    return any(( val(i) for i in range(len(l))))
-    
+fn main() {
+    let tests: Vec<Vec<i32>> = vec![
+        vec![1, 3, 2, 1],
+        vec![1, 3, 2],
+        vec![3, 6, 5, 8, 10, 20, 15],
+        vec![1, 2, 1, 2],
+        vec![10, 1, 2, 3, 4, 5],
+        vec![0, -2, 5, 6],
+        vec![40, 50, 60, 10, 20, 30],
+        vec![1, 1],
+        vec![1, 2, 3, 4, 3, 6],
+        vec![10, 1, 2, 3, 4, 5, 6, 1],
+        vec![1, 1, 1, 2, 3],
+        vec![1, 1, 1, 2, 3]
+    ];
 
-def main():
-    data = [1, 3, 2, 1]
-    r = solution(data)
-    sol = False
-    print(f"{sol} -> {r} \t {sol == r}")
+    let sols = [false, true, false, false, true, true, false, true, true, false, false, false];
 
-    data = [1, 3, 2]
-    r = solution(data)
-    sol = True
-    print(f"{sol} -> {r} \t {sol == r}")
-    
-    data = [3, 6, 5, 8, 10, 20, 15]
-    r = solution(data)
-    sol = False
-    print(f"{sol} -> {r} \t {sol == r}")
-    
-    data = [1, 2, 1, 2]
-    r = solution(data)
-    sol = False
-    print(f"{sol} -> {r} \t {sol == r}")
-    
-    data = [10, 1, 2, 3, 4, 5]
-    r = solution(data)
-    sol = True
-    print(f"{sol} -> {r} \t {sol == r}")
-
-    data = [0, -2, 5, 6]
-    r = solution(data)
-    sol = True
-    print(f"{sol} -> {r} \t {sol == r}")
-
-    data = [40, 50, 60, 10, 20, 30]
-    r = solution(data)
-    sol = False
-    print(f"{sol} -> {r} \t {sol == r}")
-    
-    data = [1, 1]
-    r = solution(data)
-    sol = True
-    print(f"{sol} -> {r} \t {sol == r}")
-
-    data = [1, 2, 3, 4, 3, 6]
-    r = solution(data)
-    sol = True
-    print(f"{sol} -> {r} \t {sol == r}")
-    
-    data = [10, 1, 2, 3, 4, 5, 6, 1]
-    r = solution(data)
-    sol = False
-    print(f"{sol} -> {r} \t {sol == r}")
-
-    data = [1, 1, 1, 2, 3]
-    r = solution(data)
-    sol = False
-    print(f"{sol} -> {r} \t {sol == r}")
-
-    data = [1, 1, 1, 2, 3]
-    r = solution(data)
-    sol = False
-    print(f"{sol} -> {r} \t {sol == r}")
-    
-
-def test():
-    a = [1,2,3,4,5]
-    la = len(a)
-    for i in range(la):
-        iz = (i-1) % la
-        cn = i % la
-        de = (i+1) % la
-        print(a[iz], a[cn], a[de])
-
-if __name__ == '__main__':
-    main()
-    # test()
+    for i in 0..tests.len() {
+        let d = tests[i].clone();
+        let r = solution(d);
+        println!("{} -> {} \t {}", sols[i], r, sols[i] == r);
+    }
+}

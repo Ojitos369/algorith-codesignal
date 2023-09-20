@@ -10,6 +10,8 @@ solution(year) = 17.
 */
 
 fn solution(year: i32) -> i32 {
+    println!();
+    println!("{:?}", year);
     (year - 1) / 100 + 1
 }
 
