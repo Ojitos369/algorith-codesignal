@@ -10,10 +10,18 @@ def solution(d): # d of data
 
 
 def main():
-    data = "input_data"
-    r = solution(data)
-    sol = "correct_answer"
-    print(f"{sol} -> {r} \t {sol == r}")
+    tests = [
+        "input_data", 
+        ...
+    ]
+    sols = [
+        "correct_answer",
+        ...
+    ]
+    for i in range(len(tests)):
+        data = tests[i]
+        r = solution(data)
+        print(f"{sols[i]} -> {r} \t {sols[i] == r}")
 
 
 def test():
